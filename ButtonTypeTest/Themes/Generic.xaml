@@ -83,9 +83,6 @@
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="150" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
-                                    <!--<VisualState.Setters>
-                                        <Setter Property="Width" Value="100"/>
-                                    </VisualState.Setters>-->
                                 </VisualState>
                                 <VisualState x:Name="HiddenTopState">
                                     <Storyboard>
