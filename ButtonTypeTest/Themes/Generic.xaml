@@ -1,0 +1,108 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ButtonTypeTest">
+
+    <Style TargetType="local:MyButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:MyButton">
+                    <Grid
+                        x:Name="BtnInnerGrid"
+                        Padding="0"
+                        BorderThickness="2"
+                        CornerRadius="20"
+                        RenderTransformOrigin="0.5,0.5">
+                        <Grid.RenderTransform>
+                            <CompositeTransform ScaleX="1" ScaleY="1" />
+                        </Grid.RenderTransform>
+                        <Grid.RowDefinitions>
+                            <RowDefinition x:Name="BtnGridTopRow" />
+                            <RowDefinition x:Name="BtnGridBottomRow" />
+                        </Grid.RowDefinitions>
+                        <RelativePanel
+                            x:Name="TopRowRelativePanel"
+                            Grid.Row="0"
+                            Grid.Column="0">
+                            <Viewbox x:Name="FontIconViewBox" Visibility="Collapsed">
+                                <FontIcon
+                                    x:Name="BtnFontIcon"
+                                    FontFamily="Segoe MDL2 Assets"
+                                    Glyph="&#xE700;" />
+                            </Viewbox>
+                            <Viewbox x:Name="ImageViewBox" Visibility="Visible">
+                                <Image x:Name="BtnImage" Source="" />
+                            </Viewbox>
+                        </RelativePanel>
+                        <RelativePanel
+                            x:Name="BottomRowRelativePanel"
+                            Grid.Row="1"
+                            Grid.Column="0">
+                            <TextBlock x:Name="BtnTextBlock" Text="Test this is button content!" />
+                        </RelativePanel>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="00:00:00.200000">
+                                        <VisualTransition.GeneratedEasingFunction>
+                                            <CubicEase EasingMode="EaseOut" />
+                                        </VisualTransition.GeneratedEasingFunction>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <PointerUpThemeAnimation Storyboard.TargetName="BtnInnerGrid" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Target="BtnInnerGrid.(UIElement.Opacity)" Value="0.7" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Target="BtnInnerGrid.(UIElement.Opacity)" Value="0.7" />
+                                        <Setter Target="BtnInnerGrid.(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Value="0.9" />
+                                        <Setter Target="BtnInnerGrid.(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Value="0.9" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <VisualState.Setters>
+                                        <Setter Target="BtnInnerGrid.(UIElement.Opacity)" Value="0.3" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ButtonTypeGroup">
+                                <VisualState x:Name="TopState">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BtnGridTopRow" Storyboard.TargetProperty="Height">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="2*" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BtnInnerGrid" Storyboard.TargetProperty="Width">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="150" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                    <!--<VisualState.Setters>
+                                        <Setter Property="Width" Value="100"/>
+                                    </VisualState.Setters>-->
+                                </VisualState>
+                                <VisualState x:Name="HiddenTopState">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BtnGridTopRow" Storyboard.TargetProperty="Height">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="0" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BtnInnerGrid" Storyboard.TargetProperty="Width">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="100" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
